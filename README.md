@@ -1,10 +1,10 @@
-# Prueba 1
+# Prueba 2
 
 Servicio web
 
 ## Tabla de contenido
 
-- [Prueba 1](#project-title)
+- [Prueba 2](#project-title)
   - [Tabla de contenido](#tabla-de-contenido)
   - [Requerimientos](#requerimientos)
   - [Codigo](#codigo)
@@ -16,7 +16,7 @@ Las librerias necesarias se encuentran en el archivo requirements.txt. Ademas, s
 
 ## Codigo
 
-Parte 1 : en este bloque se conecta a mongo usando Flask
+Parte 3 : en este bloque se conecta a mongo usando Flask
 ```python
 
   app = Flask(__name__, template_folder='')
