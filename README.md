@@ -12,11 +12,7 @@ Servicio web
 
 ### Requerimientos
 
-Las librerias necesarias se encuentran en el archivo requirements.txt.
-
-### Fuente de datos
-La fuente de datos a utilizar sera la proporcionada por API Gob.Ec, la cual contiene datos que se generan en las instituciones públicas del ecuador.
-Para mayor informacion y sus metodos de uso visitar en el siguiente enlace: https://www.gob.ec/api
+Las librerias necesarias se encuentran en el archivo requirements.txt. Ademas, se necesita tener una cuenta creada en mongo atlas con una base de datos para establecer la conexion.
 
 ## Codigo
 
