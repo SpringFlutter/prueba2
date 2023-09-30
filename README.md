@@ -20,48 +20,30 @@ Para mayor informacion y sus metodos de uso visitar en el siguiente enlace: http
 
 ## Codigo
 
-Parte 1 : en este bloque de codigo realizamos un solicitud GET para obtener los datos de las instituciones finacieras
+Parte 1 : en este bloque se conecta a mongo usando Flask
 ```python
-    url = 'https://www.gob.ec/api/v1/instituciones'
-    headers = {'User-agent': 'Chrome/58.0.3029.110'}
 
-    # Realizar una solicitud GET
-    response = requests.get(url=url, headers=headers)
+  app = Flask(__name__, template_folder='')
+  
+  # Conexion a la base de datos dbDatos en la nube
+  app.config['MONGO_URI'] = 'mongodb+srv://projectspring85:prueba123@cluster0.xqrsb1a.mongodb.net/dbDatos?retryWrites=true&w=majority'
+  
+  mongo = PyMongo(app)
 
-    # Verificar si la solicitud fue exitosa (código de respuesta 200)
-    if response.status_code == 200:
-        # Convertir la respuesta a formato JSON
-        data = response.json()
-
-        primer_resultado = data[0]
-
-        for resultado in data:
-            # Iterar a través de las claves (campos) en el objeto
-            for campo, valor in primer_resultado.items():
-                # Imprimir el nombre del campo y su valor
-                print(f"{campo}: {valor}")
-
-    else:
-        print(f'Error al hacer la solicitud. Código de respuesta: {response.status_code}')
 ```
-Parte 2: en este bloque almacenamos los datos obtenidos en una base datos mongodb en la nube
+Parte 2: en este bloque se define la ruta http://127.0.0.1:5000/api/datos/institucion/{idInstitucion} para filtrar los datos, imprimirlos y devolverlos en una pagina html
 ```python
-    # Cadena de conexion a la base de datos en la nube
-    connection_string = "mongodb+srv://projectspring85:prueba123@cluster0.xqrsb1a.mongodb.net/?retryWrites=true&w=majority"
-
-    # Se abre una conexion a la base de datos dbDatos en la coleccion docInstitucion
-    client = pymongo.MongoClient(connection_string)
-    db = client["dbDatos"]
-    collection = db["docInstitucion"]
-
-    # Se insertan los datos
-    result = collection.insert_many(data)
-
-    # Se imprime los ID de documentos insertados
-    print("Documentos insertados IDs:", result.inserted_ids)
-
-    # Se cierra la conexion
-    client.close()
+  # Definir API GET para consumir los datos, recibira el parametro idInstitucion
+  @app.route('/api/datos/institucion/<string:idInstitucion>', methods=['GET'])
+  def get_data(idInstitucion):
+      data = list(mongo.db.docInstitucion.find({'institucion_id':idInstitucion}, {'_id': 0}))
+      # Se imprime los datos
+      print(data)
+      # Se regresa los datos en una pagina.html
+      if data:
+          return render_template('pagina.html', data=data)
+      else:
+          return render_template('pagina.html', message='sin datos')
 ```
 
 ## Uso
@@ -72,5 +54,5 @@ pip install -r requirements.txt
 Correr el codigo
 
 ```python
-python3 prueba.py
+python3 prueba2.py
 ```
