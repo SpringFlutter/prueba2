@@ -27,7 +27,7 @@ Parte 3 : en este bloque se conecta a mongo usando Flask
   mongo = PyMongo(app)
 
 ```
-Parte 2: en este bloque se define la ruta http://127.0.0.1:5000/api/datos/institucion/{idInstitucion} para filtrar los datos, imprimirlos y devolverlos en una pagina html
+En el siguiente bloque se define la ruta http://127.0.0.1:5000/api/datos/institucion/{idInstitucion} para filtrar los datos, imprimirlos y devolverlos en una pagina html
 ```python
   # Definir API GET para consumir los datos, recibira el parametro idInstitucion
   @app.route('/api/datos/institucion/<string:idInstitucion>', methods=['GET'])
