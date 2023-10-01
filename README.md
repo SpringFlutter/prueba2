@@ -54,4 +54,4 @@ python3 prueba2.py
 ```
 Probar el servicio abriendo el explorador e ingresando el enlace http://127.0.0.1:5000/api/datos/institucion/118, donde 118 es el id de la institucion ARCOTEL.
 ![GitHub Logo](resultadoweb.png)
-
+Ademas se puede ver el ejercicio completo con resultados en el archivo prueba.ipynb
